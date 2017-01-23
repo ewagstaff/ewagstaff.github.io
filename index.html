@@ -166,18 +166,9 @@
     <!-- Make the page go -->
     <script>
         $(document).ready(function() {
-            $.ajax({
-                type: "GET",
-                url: "ewagstaff.github.io.csv",
-                dataType: "csv",
-                success: function(data) {
-                    console.log(data);
-                }
-            }).fail(function(){
-                console.log("failed");
-            });
+            var csvData = "title,description,link,image\nSimple News Assembly Platform: A CMS built for the newsroom,,http://www.niemanlab.org/2016/08/the-los-angeles-times-built-its-own-journalist-friendly-story-editor-and-its-now-rolling-out-to-all-of-tronc/,thumb_snap.jpg\nShooters in San Bernardino massacre seemed to be living the 'American Dream',,http://graphics.latimes.com/san-bernardino-shooting/,thumb_san_bernardino.jpg\nThese are the 749 inmates awaiting execution on California's death row,,http://www.latimes.com/projects/la-me-death-row/,thumb_death_row.jpg";
 
-            console.log("hey!");
+            console.log($.csv.toObjects(csvData));
 
             var itemTemplate = _.template('<div class="col-md-4 col-sm-6 hero-feature"><div class="thumbnail"><img src="<%= image %>" alt="<%= title %>"><div class="caption"><h3><%= title %></h3><p><%= description %></p></div></div></div>');
 

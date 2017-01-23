@@ -47,6 +47,10 @@ a:hover {
 	text-decoration: none;
 }
 
+.jumbotron {
+	background-color: transparent;
+}
+
 @media (min-width: 1200px){
 	.container {
 		width: 970px;

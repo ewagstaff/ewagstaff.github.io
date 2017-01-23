@@ -166,16 +166,12 @@
     <!-- Make the page go -->
     <script>
         $(document).ready(function() {
-            $.ajaxPrefilter( 'script', function( options ) {
-                options.crossDomain = true;
-            });
-
             $.ajax({
                 type: "GET",
                 url: "ewagstaff.github.io.csv",
-                dataType: "script",
+                dataType: "csv",
                 success: function(data) {
-                    console.log($.csv.toObjects(data));
+                    console.log(data);
                 }
             }).fail(function(){
                 console.log("failed");

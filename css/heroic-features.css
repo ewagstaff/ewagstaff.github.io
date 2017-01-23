@@ -31,6 +31,14 @@ footer {
 	border-radius: 6px;
 }
 
+.thumbnail img {
+	box-shadow: 2px 2px 2px #ccc;
+}
+
+.thumbnail img:hover {
+	opacity: 0.7;
+}
+
 @media (min-width: 1200px){
 	.container {
 		width: 970px;

@@ -81,60 +81,8 @@
             </div>
         </div>
 
-        <!-- Page Items -->
+        <!-- Page Items (populated from the csv) -->
         <div id="items" class="row text-center">
-
-            <div class="col-md-4 col-sm-6 hero-feature">
-                <div class="thumbnail">
-                    <img src="http://placehold.it/800x500" alt="">
-                    <div class="caption">
-                        <h3>Feature Label</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-                        <p>
-                            <a href="#" class="btn btn-primary">Buy Now!</a> <a href="#" class="btn btn-default">More Info</a>
-                        </p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-4 col-sm-6 hero-feature">
-                <div class="thumbnail">
-                    <img src="http://placehold.it/800x500" alt="">
-                    <div class="caption">
-                        <h3>Feature Label</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-                        <p>
-                            <a href="#" class="btn btn-primary">Buy Now!</a> <a href="#" class="btn btn-default">More Info</a>
-                        </p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-4 col-sm-6 hero-feature">
-                <div class="thumbnail">
-                    <img src="http://placehold.it/800x500" alt="">
-                    <div class="caption">
-                        <h3>Feature Label</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-                        <p>
-                            <a href="#" class="btn btn-primary">Buy Now!</a> <a href="#" class="btn btn-default">More Info</a>
-                        </p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-4 col-sm-6 hero-feature">
-                <div class="thumbnail">
-                    <img src="http://placehold.it/800x500" alt="">
-                    <div class="caption">
-                        <h3>Feature Label</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-                        <p>
-                            <a href="#" class="btn btn-primary">Buy Now!</a> <a href="#" class="btn btn-default">More Info</a>
-                        </p>
-                    </div>
-                </div>
-            </div>
 
         </div>
 
@@ -166,11 +114,7 @@
     <!-- Make the page go -->
     <script>
         $(document).ready(function() {
-            var csvData = "title,description,link,image\nSimple News Assembly Platform: A CMS built for the newsroom,,http://www.niemanlab.org/2016/08/the-los-angeles-times-built-its-own-journalist-friendly-story-editor-and-its-now-rolling-out-to-all-of-tronc/,thumb_snap.jpg\nShooters in San Bernardino massacre seemed to be living the 'American Dream',,http://graphics.latimes.com/san-bernardino-shooting/,thumb_san_bernardino.jpg\nThese are the 749 inmates awaiting execution on California's death row,,http://www.latimes.com/projects/la-me-death-row/,thumb_death_row.jpg";
-
-            console.log(csvData);
-
-            console.log($.csv.toObjects(csvData));
+            var itemTemplate = _.template('<div class="col-md-4 col-sm-6 hero-feature"><div class="thumbnail"><img src="<%= image %>" alt="<%= title %>"><div class="caption"><h4><%= title %></h4><p><%= description %></p></div></div></div>');
 
             $.ajaxPrefilter( 'text', function( options ) {
                 options.crossDomain = true;
@@ -178,25 +122,24 @@
 
             $.ajax({
                 type: "GET",
-                url: "ewagstaff.github.io.csv",
+                url: "https://ewagstaff.github.io/data.csv",
                 dataType: "text",
                 success: function(data) {
-                    console.log($.csv.toObjects(data));
+                    var itemArray = $.csv.toObjects(data);
+                    var itemHTML;
+                    for (var i = 0; i < itemArray.length; i++){
+                        itemHTML = itemTemplate({
+                            image: "images/" + itemArray[i].image,
+                            title: itemArray[i].title,
+                            description: itemArray[i].description,
+                            link: itemArray[i].link,
+                        });
+
+                        //Add rendered templates to page
+                        $("#items").append(itemHTML);
+                    }
                 }
-            }).fail(function(){
-                console.log("failed");
             });
-
-            var itemTemplate = _.template('<div class="col-md-4 col-sm-6 hero-feature"><div class="thumbnail"><img src="<%= image %>" alt="<%= title %>"><div class="caption"><h3><%= title %></h3><p><%= description %></p></div></div></div>');
-
-            var itemHTML = itemTemplate({
-                image: "http://cdn1-www.dogtime.com/assets/uploads/gallery/30-impossibly-cute-puppies/impossibly-cute-puppy-2.jpg",
-                title: "Here's a puppy",
-                description: "Some description of said puppy."
-            });
-
-            //Add rendered templates to page
-            $("#items").append(itemHTML);
 
         });
     </script>

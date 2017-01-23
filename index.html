@@ -173,7 +173,9 @@
                 success: function(data) {
                     console.log($.csv.toObjects(data));
                 }
-             });
+            }).fail(function(){
+                console.log("failed");
+            });
 
             console.log("hey!");
 

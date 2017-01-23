@@ -35,8 +35,16 @@ footer {
 	box-shadow: 2px 2px 2px #ccc;
 }
 
-.thumbnail img:hover {
+.thumbnail img:hover, h4:hover, p:hover {
 	opacity: 0.7;
+}
+
+.thumbnail {
+	text-align: center;
+}
+
+a:hover {
+	text-decoration: none;
 }
 
 @media (min-width: 1200px){

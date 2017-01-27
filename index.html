@@ -116,10 +116,6 @@
         $(document).ready(function() {
             var itemTemplate = _.template('<div class="col-md-4 col-sm-6 hero-feature"><div class="thumbnail"><a href="<%= link %>"><img src="<%= image %>" alt="<%= title %>"><div class="caption"><h4><%= title %></h4><p><%= description %></p></div></a></div></div>');
 
-            $.ajaxPrefilter( 'text', function( options ) {
-                options.crossDomain = true;
-            });
-
             $.ajax({
                 type: "GET",
                 url: "https://ewagstaff.github.io/data.csv",
@@ -143,6 +139,12 @@
 
         });
     </script>
+
+    <!-- 
+    Welcome to my portfolio page! If you've found yourself here, you're probably curious about what's going on behind the scenes.
+    Nothing too complicated. The Bootstrap template was a nice clean offering from Start Bootstrap (https://startbootstrap.com/template-overviews/heroic-features/). The data for "Recent Projects" is an exported CSV that's run through an Underscore.js
+    template and printed onto the page. Hope you check some of them out! 
+    -->
 
 </body>
 

@@ -9,7 +9,7 @@ body {
 }
 
 .hero-spacer {
-    margin-top: 50px;
+    margin-top: 10px;
 }
 
 .hero-feature {
@@ -31,11 +31,12 @@ footer {
 
 .header-image img {
 	width: 100%;
-	border-radius: 6px;
+	border-radius: 3px;
 }
 
 .thumbnail img {
 	box-shadow: 2px 2px 2px #ccc;
+	border-radius: 3px;
 }
 
 .thumbnail img:hover, h4:hover, p:hover {
@@ -52,10 +53,15 @@ a:hover {
 
 .jumbotron {
 	background-color: transparent;
+	margin-bottom: 10px;
 }
 
 .jumbotron p.cursor:after {
     content: "|";
+}
+
+hr {
+	width: calc(100% - 30px);
 }
 
 @media (min-width: 1200px){

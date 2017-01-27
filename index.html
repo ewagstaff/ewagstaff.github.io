@@ -63,8 +63,8 @@
         <header class="jumbotron hero-spacer">
             <div class="row">
                 <div class="header-text col-sm-7">
-                    <h1>A Warm Welcome!</h1>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsa, ipsam, eligendi, in quo sunt possimus non incidunt odit vero aliquid similique quaerat nam nobis illo aspernatur vitae fugiat numquam repellat.</p>
+                    <h1>Evan Wagstaff</h1>
+                    <p id="print-text"></p>
                 </div>
                 <div class="header-image col-sm-5">
                     <img src="images/headshot.jpg" alt="Evan Wagstaff" />
@@ -136,6 +136,35 @@
                     }
                 }
             });
+
+            // Keep cursor flashing
+            var flashCursor = function(){
+                if ($("#print-text").hasClass("cursor")){
+                    // Remove cursor
+                    $("#print-text").removeClass("cursor");
+                } else {
+                    // Display cursor
+                     $("#print-text").addClass("cursor");
+                }
+            }
+            var cursorInterval = setInterval(flashCursor, 750);
+
+            // Type letters
+            var textArray = "makes news that moves  ".split("");
+            var typeLetter = function(){
+                var newLetter = textArray.shift();
+                //Stagger the wait times to seem more realistic
+                var randomWait = Math.floor(Math.random() * (200 - 20 + 1)) + 20;
+                if (textArray.length > 0){
+                    $("#print-text").text($("#print-text").text() + newLetter);
+                    setTimeout(typeLetter, randomWait);
+                } else {
+                    clearInterval(cursorInterval);
+                    $("#print-text").removeClass("cursor");
+                }
+            }
+            // Wait a second before starting
+            setTimeout(typeLetter, 2000);
 
         });
     </script>

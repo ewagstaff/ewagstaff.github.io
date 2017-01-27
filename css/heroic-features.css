@@ -54,6 +54,10 @@ a:hover {
 	background-color: transparent;
 }
 
+.jumbotron p.cursor:after {
+    content: "|";
+}
+
 @media (min-width: 1200px){
 	.container {
 		width: 970px;

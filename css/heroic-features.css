@@ -102,6 +102,7 @@ hr {
 	}
 	p#print-text {
 		position: absolute;
-    	bottom: -54px;
+	    bottom: -50px;
+	    font-size: 15px;
 	}
 }
